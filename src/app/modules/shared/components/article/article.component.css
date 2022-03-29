@@ -1,0 +1,76 @@
+.produit {
+    @apply bg-light flex flex-col md:flex-row md:h-[260px] items-start relative shadow hover:shadow-lg hover:border-grey;
+    margin-bottom: 20px;
+    border-width: 1px;
+    border-style: solid;
+    transition: box-shadow 300ms ease, border-color 300ms ease;
+    cursor: pointer;   
+}
+
+.produit.quantite {
+    @apply bg-light hover:shadow hover:border-grey hover:bg-white;
+    margin: 0;
+    height:160px
+}
+
+.produit .quantite {
+    font-weight: bold;
+    font-size:1.4rem;
+    padding: 16px;
+}
+
+.produit .image {
+    width: 258px;
+    height: 258px;
+    padding:15px;
+    @apply bg-white 
+}
+
+.produit .image img{
+    @apply object-center object-cover
+}
+
+.produit.quantite .image {
+    width: 158px;
+    height: 158px;
+    padding:15px;
+    @apply bg-white 
+}
+
+.produit .description {
+     flex: 1; 
+    padding: 16px;
+    max-height: 260px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @apply text-grey pl-8 text-[1rem] xl:text-[1.2rem] 
+    
+}
+
+.produit .prix {
+    @apply rounded-md py-2 font-roboto xl:absolute text-white font-thin bg-blue;
+    margin: 10px;
+    font-size: 1.5rem;
+    width: 200px;
+    text-align: center;
+    bottom:20px;
+    right:20px;
+}
+
+.produit h4 {
+    font-weight: bolder;
+    margin-bottom: 8px;
+    @apply text-dark  text-[1.2rem] xl:text-[2.4rem] 
+    
+}
+
+.produit.quantite h4 {
+    @apply text-[1.4rem]      
+}
+
+.produit.quantite .description {
+   padding: 8px;
+   max-height: 160px;
+   @apply  pl-8 text-[0.8rem] 
+   
+}

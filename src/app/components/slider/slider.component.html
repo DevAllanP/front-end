@@ -1,0 +1,24 @@
+<!-- Slider -->
+
+<div id="default-carousel" data-carousel="slide" class="relative">
+  <div class="overflow-hidden relative h-56 sm:h-64 xl:h-80 2xl:h-96">
+    <ng-container *ngFor="let img of slidesImages; let index=index;" > 
+      <div class="duration-700 ease-in-out" data-carousel-item>
+        <img src="{{img}}"  class="w-full object-cover object-center relative block" alt="slide-{{index}}">
+        <div class="carousel-caption block absolute text-center">
+          <p  class="text-light text-4xl font-bold"> </p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="flex relative bottom-8 justify-center space-x-3 h-8">
+    <button type="button" class="w-4 h-4 rounded-full z-20" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+    <button type="button" class="w-4 h-4 rounded-full z-20"  aria-label="Slide 2" data-carousel-slide-to="1"></button>
+    <button type="button" class="w-4 h-4 rounded-full z-20"  aria-label="Slide 3" data-carousel-slide-to="2"></button>
+    <button type="button" class="w-4 h-4 rounded-full z-20"  aria-label="Slide 4" data-carousel-slide-to="3"></button>
+    <button type="button" class="w-4 h-4 rounded-full z-20"  aria-label="Slide 5" data-carousel-slide-to="4"></button>
+  </div>
+</div>
+
+
+

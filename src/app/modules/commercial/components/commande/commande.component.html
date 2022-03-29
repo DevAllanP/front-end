@@ -1,0 +1,61 @@
+<div class="entete">
+    <div class="date">
+        Commande effectuée le<br />
+        {{commande.dateCommande | date:'yyyy-MM-dd HH:mm:ss'}}
+    </div>
+    <div class="total">
+        Total<br />
+        {{total}} €
+    </div>
+    <div class="adresse">
+        Livraison à<br />
+        <ng-container *ngIf="commande.utilisateur.adresseDto">
+            {{commande.utilisateur.adresseDto.numero}} {{commande.utilisateur.adresseDto.rue}},
+            {{commande.utilisateur.adresseDto.codePostal}} {{commande.utilisateur.adresseDto.ville}}
+        </ng-container>
+    </div>
+    <div class="num">
+        N° de commande<br />
+        {{commande.id}}
+    </div>
+</div>
+<ng-container *ngFor="let l of lignes">
+    <app-article [produit]="l.produitDto" [quantite]="l.quantite"></app-article>
+</ng-container>
+<div class="contact" *ngIf="showContact">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmitContact()">
+        <label for="form_contactclient_objet_{{commande.id}}">Objet du contact</label><br />
+        <input type="text" formControlName="objet" id="form_contactclient_objet_{{commande.id}}" />
+        <label for="form_contactclient_corps_{{commande.id}}">Contenu du message</label><br />
+        <textarea formControlName="corps" id="form_contactclient_corps_{{commande.id}}"></textarea>
+        <button type="submit" [disabled]="!contactForm.valid" class="bouton">Envoyer le message</button>
+    </form>
+</div>
+<div class="pied">
+    <form [formGroup]="statusForm" (ngSubmit)="onSubmitStatus()" class="status">
+        <label for="form_changestatus_{{commande.id}}">Dernier status</label>
+        <select id="form_changestatus_{{commande.id}}" formControlName="status">
+            <option value="{{status.id}}" *ngFor="let status of allStatus">{{status.label}}</option>
+        </select>
+        <button type="submit" [disabled]="!statusForm.valid" class="bouton">Changer</button>
+    </form>
+    <button class="bouton" type="button" (click)="contacte()">Contacter le client</button>
+</div>
+<waoo-modal id="modal-commande-{{commande.id}}-loading">
+    <div class="flex justify-center items-center">
+        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</waoo-modal>
+<waoo-modal id="modal-commande-{{commande.id}}-contact">
+    <div class="text-justify">
+      Le message a été envoyé au client !
+    </div>
+    <div class="text-right">
+      <button type="button" (click)="closeContactModal()"
+        class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        Fermer
+      </button>
+    </div>
+</waoo-modal>

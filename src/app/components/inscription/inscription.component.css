@@ -1,0 +1,15 @@
+form.space-y-5 .erreur {
+    margin-top: 0;
+}
+
+form.ng-submitted .erreur {
+    display: block;
+}
+
+form.ng-submitted input.ng-invalid {
+    @apply border-red-700;
+}
+
+input[type="date"]::placeholder {
+    @apply text-grey;
+}

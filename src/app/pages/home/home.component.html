@@ -1,0 +1,103 @@
+<app-slider ></app-slider>
+
+<!-- Homepage -->
+<div class="flex flex-col">
+  <!-- Produits container -->
+  <div class="w-full">
+  <!-- Produits poplaires -->
+  <div class="flex flex-col w-full" *ngIf="products.length">
+    <div class="pt-8 mx-8 flex justify-around">
+      <h2 class="font-roboto text-3xl font-bold align-text-bottom ">Produits populaires</h2>
+    </div>
+    <div class="flex justify-around">
+      <div class="p-8 mx-8 grid grid-cols-1 lg:grid-cols-3">
+        <ng-container *ngFor="let prd of products" > 
+        <div class="max-w-xs min-h-[32rem] mb-3 bg-light rounded-md border border-light overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer mx-1">
+          <div class="p-4">
+            <a routerLink="/produit/{{prd.idProduit}}">
+              <ng-container *ngFor="let img of prd?.url_images; let index=index;" > 
+                <img *ngIf="index==0" src="{{img}}" alt="{{prd.nom}}" />
+              </ng-container>
+            </a>
+          </div>
+          <div class="p-4 relative h-max min-h-[182px]">
+            <h3 class="text-lg font-roboto font-bold text-dark">{{prd.nom}}</h3>
+            <p class="mt-4 text-2xl py-4 absolute bottom-0 left-[30%]">
+              <span class="text-2xl p-4 rounded-md py-2 font-roboto text-white font-thin bg-blue relative">{{prd.prix}} €</span>
+            </p>
+          </div>
+        </div>
+        </ng-container>
+      </div> 
+    </div>
+  </div>
+   <!-- fin de produits populaires -->
+
+  <!-- Nouveaux produit -->
+  <div class="flex justify-center mt-24 w-full" *ngIf="produit">
+    <div class="flex p-8 max-w-5xl bg-light cursor-pointer">
+      <div  class="w-1/2 overflow-hidden hover:scale-105 transition duration-500">
+        <ng-container *ngFor="let img of produit?.url_images; let index=index;" > 
+          <a routerLink="/produit/{{produit?.idProduit}}">
+            <img  *ngIf="index==0" src="{{img}}" alt="{{produit?.nom}}" />
+          </a>
+        </ng-container>
+      </div>
+      <div class="w-1/2">
+          <div class="w-full h-18 bg-white">
+            <h1 class="font-roboto leading-loose text-3xl font-bold">Nouveau produit</h1>
+          </div>
+          <div class="py-12 px-8 bg-light row-col-3 ">
+            <h3 class="text-xl font-semibold text-gray-600">{{produit?.nom}}</h3>
+            <h6>{{produit?.description}}</h6>
+            <p class="mt-12 text-7xl font-thin">{{produit?.prix}} €</p>
+          </div>
+        </div>
+    </div>
+  </div>
+   <!-- fin de nouveaux produits -->
+    <!-- Consultée récemment -->
+    <div class="flex flex-col w-full py-12" *ngIf="products.length">
+      <div class="pt-8 mx-8 flex justify-around">
+        <h1 class="font-roboto text-3xl capitalize font-bold align-text-bottom ">Produits consultés récemment</h1>
+      </div>
+      <div class="flex justify-around">
+        <div class="p-8 mx-8 grid grid-cols-1 lg:grid-cols-3">
+          <ng-container *ngFor="let prd of products" > 
+            <div class="max-w-xs min-h-[32rem] mb-3 bg-light rounded-md border border-light overflow-hidden shadow-lg hover:scale-105 transition duration-500 cursor-pointer mx-1">
+              <div class="p-4">
+                <a href="/produit/{{prd.idProduit}}">
+                  <ng-container *ngFor="let img of prd?.url_images; let index=index;" > 
+                    <img  *ngIf="index == 0" src="{{img}}" alt="{{prd.nom}}" />
+                  </ng-container>
+                </a>
+              </div>
+              <div class="p-4 relative h-max min-h-[182px]">
+                <h3 class="text-lg font-roboto font-bold text-dark">{{prd.nom}}</h3>
+                <p class="mt-4 text-2xl  py-4 absolute bottom-0 left-[30%] ">
+                  <span class="text-2xl px-3 rounded-md py-2 font-roboto relative text-white font-thin bg-blue">{{prd.prix}} €</span>
+                </p>
+              </div>
+            </div>
+            </ng-container>
+        </div>
+      </div>
+    </div>
+    <!-- fin de consultes recemment -->
+  </div>
+   <!--Fin Produits container -->
+</div>
+ <!-- fin de homepage -->
+
+
+<waoo-modal id="modal-home">
+  <div class="text-justify">
+    {{alert}}
+  </div>
+  <div class="text-right">
+    <button type="button" (click)="closeModal()"
+      class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+      Fermer
+    </button>
+  </div>
+</waoo-modal>

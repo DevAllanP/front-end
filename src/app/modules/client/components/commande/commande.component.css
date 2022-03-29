@@ -1,0 +1,109 @@
+select {
+    @apply text-dark;
+}
+
+.entete {
+    display: flex;
+    text-align: right;
+    font-size: 0.8rem;
+    border-radius: 8px 8px 0 0;
+    margin-top: 1rem;
+    @apply bg-grey text-light;
+}
+
+.adresse {
+    flex: 1;
+}
+
+.entete div {
+    padding: 8px 16px 8px 16px;
+}
+
+.pied {
+    display: flex;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 0 0 8px 8px;
+    @apply bg-grey text-light;
+}
+
+.pied label {
+    margin-right: 1rem;
+}
+
+.pied button {
+    margin-left: 1rem;
+}
+
+.contact, .suivi {
+    border-width: 1px;
+    border-style: solid;
+    padding: 1rem;
+    @apply border-grey;
+}
+
+.contact input, .contact textarea, .contact button {
+    width: 100%;
+}
+
+.contact textarea {
+    height: 10rem;
+    padding: 0.5rem;
+}
+
+.suivi div {
+    line-height: 3rem;
+    padding-left: 3rem;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.suivi span {
+    font-size: 1rem;
+    font-style: italic;
+    margin-left: 0.5rem;
+    @apply text-blue;
+}
+
+.suivi div::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 3rem;
+    width: 0.1rem;
+    left: 0.75rem;
+    top: 0;
+    @apply bg-dark;
+}
+
+.suivi div.actif::before, .suivi div.actif::after {
+    @apply bg-gold;
+}
+
+.suivi div.actif::after {
+    content: "✔";
+}
+
+.suivi div::after {
+    position: absolute;
+    content: "-";
+    display: inline-block;
+    margin-right: 1rem;
+    line-height: 1.5rem;
+    width: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    left: 0;
+    top: 0.75rem;
+    @apply bg-dark text-light;
+}
+
+.suivi div:first-child::before {
+    top: 1.5rem;
+    height: 1.5rem;
+}
+
+.suivi div:last-child::before {
+    top: 0;
+    height: 1.5rem;
+}

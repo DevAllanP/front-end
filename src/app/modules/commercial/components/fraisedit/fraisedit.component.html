@@ -1,0 +1,6 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <input formControlName="label" type="text" value="{{frais.label}}" required class="rounded-md form-input px-4 py-2 text-md mr-1" />
+    <span class="mr-2">Montant :</span>
+    <span class="inline-block min-w-[80px] mr-2 text-right">{{frais.montant}}</span>
+    <button type="submit" [disabled]="!editForm.valid" class="rounded-md text-2xl bg-blue text-light font-normal py-1 px-2 mr-1">Renommer</button>
+</form>

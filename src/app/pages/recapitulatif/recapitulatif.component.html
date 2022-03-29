@@ -1,0 +1,101 @@
+<div class="flex w-full flex-col items-center mt-10 px-20">
+    <h2 class="text-3xl font-roboto pb-5 text-dark">Récapitulatif de la commande</h2>
+</div>
+<div class="adresse-livraison">
+    <h3 class="pl-10 text-1xl font-bold">Adresse de livraison</h3>
+    <ng-container *ngIf="adresse">
+        <div class="adresse pl-10 ml-10 mb-5">
+            {{adresse.numero}} {{adresse.rue}}<br />
+            {{adresse.codePostal}} {{adresse.ville}}<br />
+            <button type="button" class="bouton mt-1" (click)="modifieAdresse()">Modifier l'adresse actuelle</button>
+        </div>
+    </ng-container>
+    <form [formGroup]="adresseForm" class="px-5 mx-10 mb-5" (ngSubmit)="onSubmitAdresse()" *ngIf="!adresse">
+        <div class="premiere-ligne-ctn flex">
+            <div class="num-ctn px-5 w-60">
+                <label for="form_commande_num">Numéro de voirie :</label>
+                <input type="number" formControlName="numero" id="form_commande_num" class="w-full" />
+            </div>
+            <div class="rue-ctn flex-1 px-5">
+                <label for="form_commande_rue">Nom de la voie :</label>
+                <input type="text" formControlName="rue" id="form_commande_rue" class="w-full" />
+            </div>
+        </div>
+        <div class="deuxieme-ligne-ctn flex mt-2">
+            <div class="cp-ctn px-5 w-60">
+                <label for="form_commande_cp">Code postal :</label>
+                <input type="text" formControlName="codePostal" id="form_commande_cp" class="w-full" />
+            </div>
+            <div class="ville-ctn flex-1 px-5">
+                <label for="form_commande_ville">Ville :</label>
+                <input type="text" formControlName="ville" id="form_commande_ville" class="w-full" />
+            </div>
+        </div>
+        <div class="bouton-ctn text-right mt-2">
+            <button type="submit" [disabled]="!adresseForm.valid" class="bouton">Modifier</button>
+        </div>
+    </form>
+</div>
+<div class="mode-paiement">
+    <h3 class="pl-10 text-1xl font-bold">Mode de paiement</h3>
+    <form [formGroup]="modePaiement" class="pl-10 ml-10">
+        <input type="radio" value="cb" formControlName="mode" id="form_modepaiement_cb" class="mr-2" />
+        <label for="form_modepaiement_cb">Carte bancaire</label><br />
+        <input type="radio" value="stripe" formControlName="mode" id="form_modepaiement_stripe" class="mr-2" />
+        <label for="form_modepaiement_stripe">Stripe</label><br />
+    </form>
+</div>
+<div class="flex w-full flex-col items-center py-10 px-20" style="min-height:calc(100vh - 344px)">
+    <div *ngIf="prdsInCart?.length == 0"><h3 class="text-3xl font-thin text-grey">Votre panier est vide</h3></div>
+    <div *ngIf="prdsInCart.length > 0 " class="w-full" style="max-width:1200px">
+        <ng-container *ngFor="let p of prdsInCart">       
+            <div id="{{p._idProduit}}" class="w-full flex bg-light relative p-4 mb-4">
+                <img   src="{{p._url_images[0]}}" alt="{{p._nom}}" width="140" />
+                <div class="w-full ml-4">
+                    <p class="font-light text-blue text-2xl">{{p._nom}}</p>
+                    <!-- <p class="font-semibold text-grey text-lg">{{p.ref_produit}}</p> -->
+                    <p class="text-right text-3xl font-light text-blue mb-2">{{p._prix}} €</p>
+                    <label class="float-right text-md text-grey">Quantite : {{getQteByProduit(p._idProduit)}}
+                    </label>
+                </div>
+            </div>
+        </ng-container>  
+        <div class="text-right w-full mt-10 border-t p-5 text-lg text-grey"  >
+            Sous-total({{qteTotal}}) : <span class="text-2xl font-bold">{{total| number:'1.2-2'}} €</span>
+            <br/>
+            <ng-container *ngFor="let f of frais">
+                {{f.label}} : <span class="text-2xl font-bold">{{f.montant | number:'1.2-2'}} €</span>
+                <br />
+            </ng-container>
+            <hr class="w-1/3 inline-block" />
+            <br />
+            <span class="text-blue">
+                Montant total : <span class="text-2xl font-bold">{{totalWithFrais | number:'1.2-2'}} €</span>
+            </span>
+            <br />
+            <button class="mt-4 py-3 px-6 text-xl !bg-blue text-light rounded-full" (click)="paie()">Payer</button>
+        </div>
+    </div>
+</div>
+<waoo-modal id="modal-recapadresse">
+    <div class="text-justify">
+      Vous devez mettre à jour votre adresse avant de procéder au paiement.
+    </div>
+    <div class="text-right">
+      <button type="button" (click)="closeModal('modal-recapadresse')"
+        class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        Fermer
+      </button>
+    </div>
+</waoo-modal>
+<waoo-modal id="modal-recapfrais">
+    <div class="text-justify">
+      Les frais n'ont pas encore été calculés pour votre commande.
+    </div>
+    <div class="text-right">
+      <button type="button" (click)="closeModal('modal-recapfrais')"
+        class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        Fermer
+      </button>
+    </div>
+</waoo-modal>

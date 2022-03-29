@@ -1,0 +1,39 @@
+<h2 class="text-3xl font-bold align-text-bottom">Liste des produits</h2>
+<div class="tri-produits pb-4">
+    <form [formGroup]="triForm">
+        <label for="select_type_tri" class="mr-5">Trier par</label>
+        <select id="select_type_tri" (change)="changeTri()" formControlName="tri">
+            <option value="croissant" selected>Prix croissant</option>
+            <option value="decroissant">Prix décroissant</option>
+        </select>
+    </form>
+</div>
+<section>
+    <div class="filtre-produits hidden lg:block">
+        <h3 class="w-full mb-4">Prix</h3>
+        <form [formGroup]="prixForm" (submit)="submitPrix()" class="flex flex-col w-full mb-8">
+            <div class="flex justify-between mb-4">
+                <label for="filtre_prix_min" >Min
+                    <input type="number" id="filtre_prix_min" formControlName="min" />
+                </label>
+                <label for="filtre_prix_max" >Max
+                    <input type="number" id="filtre_prix_max" formControlName="max" />
+                </label>
+            </div>
+
+            <span class="info" *ngIf="filtreErreur">Un des champs doit être renseigné</span>
+            <div class="flex">
+                <button type="submit" [disabled]="!prixForm.valid">Filtrer</button>
+                <button type="button" (click)="annulePrix()" *ngIf="filtreActif">Annuler</button>
+            </div>
+        </form>
+        <hr>
+        <h3 class="my-4">Mot-clé</h3>
+        <ul>
+            <li *ngFor="let t of tags" (click)="selectionneParTag($event, t.label)" [ngClass]="{'active': tagActif === t.label}">{{t.label}}</li>
+        </ul>
+    </div>
+    <div class="liste-produits">
+        <app-article *ngFor="let produit of produits" [produit]="produit"></app-article>
+    </div>
+</section>

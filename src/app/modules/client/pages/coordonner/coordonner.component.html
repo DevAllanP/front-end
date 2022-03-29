@@ -1,0 +1,51 @@
+<main class="h-full flex-1 flex justify-center min-h-0 min-w-0 overflow-auto ">
+  <div class="items-center">
+    <div class="shadow-md rounded-md border grid"> 
+      <div class="flex bg-grey h-16 rounded-t-md col-span-1 items-center justify-center">
+          <h3 class=" leading-6 text-light text-center capitalize sm:text-2xl text-lg font-roboto font-thin">Modifier les informations du compte </h3>
+      </div>
+      <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()" >
+        <div class="grid grid-cols-6 gap-6 p-6">
+          <div class="col-span-6 sm:col-span-2">
+            <label for="nom" class="block text-sm font-medium text-gray-700 required">Nom : </label>
+            <input type="text" name="nom" id="nom" disabled   placeholder="{{currentUser.nom}}"  class="mt-2 border-2  block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+          <div class="col-span-6 sm:col-span-2">
+            <label for="last-name" class="block text-sm font-medium text-gray-700">Prénom :</label>
+            <input type="text" name="mdp" id="newmdp" disabled placeholder="{{currentUser.prenom}}" class="mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+          <div class="col-span-6 sm:col-span-6">
+            <label for="email" class="block text-sm font-medium text-gray-700">email :</label>
+            <input type="email" name="email" id="email" formControlName="email" value="{{currentUser.email}}" class="block text-mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+          <div class="col-span-6 sm:col-span-2">
+            <label for="numero" class="block text-sm font-medium text-gray-700">numero :</label>
+            <input type="number" name="numero" id="numero" formControlName="numero" value="{{currentUser.adresse.numero}}" placeholder=""class="mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+          <div class="col-span-6 sm:col-span-4">
+            <label for="rue" class="block text-sm font-medium text-gray-700">Rue :</label>
+            <input type="text" name="rue" id="rue" formControlName="rue" value="{{currentUser.adresse.rue}}" class="mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+          <div class="col-span-6 sm:col-span-2">
+            <label for="ville" class="block text-sm font-medium text-gray-700">Ville :</label>
+            <input type="text" name="ville" id="ville" formControlName="ville" value="{{currentUser.adresse.ville}}" class="mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+          <div class="col-span-6 sm:col-span-1">
+            <label for="codepostal" class="block text-sm font-medium text-gray-700">code postal :</label>
+            <input type="number" name="codepostal" id="codepostal" formControlName="codepostal" value="{{currentUser.adresse.codePostal}}" class="mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+          </div>
+      </div>      
+      <div class="px-4 py-3 bg-gray-50 align-center rounded-md text-right sm:px-6 col-span-6 flex justify-center">
+          <button type="submit" class=" py-2 px-4 border border-transparent shadow-sm text-lg font-light rounded-md text-light bg-blue hover:bg-light hover:text-blue hover:text-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sauvegarder</button>
+        </div>
+      </form>     
+    </div>  
+  </div>   
+</main>
+<modal-coord id="modal-contact">
+  <div class="flex justify-center items-center">
+    <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</modal-coord>

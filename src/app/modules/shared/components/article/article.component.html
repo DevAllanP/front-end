@@ -1,0 +1,16 @@
+<a routerLink="/produit/{{produit.idProduit}}" >
+    <article class="produit" [ngClass]="{'quantite': quantite}">
+        <ng-container *ngFor="let img of produit.url_images; let index=index" > 
+            <div class="image" *ngIf="index === 0" > 
+                <img src="{{img}}" alt="{{produit.nom}}" class="w-full h-full object-center object-cover">
+            </div>
+        </ng-container>
+        <div class="description">
+            <h4>{{produit.nom}}</h4>
+            <div>{{produit.description}}</div>
+        
+            <div class="prix" *ngIf="!quantite">{{produit.prix}} €</div>
+            <div class="quantite" *ngIf="quantite">x{{quantite}}</div>
+        </div>
+    </article>
+</a>

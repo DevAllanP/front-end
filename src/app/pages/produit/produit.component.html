@@ -1,0 +1,57 @@
+<div class="bg-white" style="min-height:calc( 100vh - 344px)">
+    <div class="pt-6">
+      <!-- Product breadcrumb tags -->
+      <nav aria-label="Breadcrumb">
+        <ol role="list" class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
+          <li>
+            <div class="flex items-center">
+              <a [routerLink]="['/produits', produit?.typeProduitDto?.label]" class="mr-2 text-sm font-light text-grey"> {{produit?.typeProduitDto?.label}}</a>
+            </div>
+          </li>
+          <li  *ngFor="let tag of produit?.tagDtos"  class="text-light">
+              /<a [routerLink]="['/produits', produit?.typeProduitDto?.label]" [queryParams]="{'tag': tag?.label}" class="mx-1 text-sm font-light text-grey"> {{tag?.label}} </a>
+          </li>  
+        </ol>
+      </nav>
+
+      <!-- Product images -->
+      <div class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8" >
+        <ng-container *ngFor="let img of produit?.url_images; let index=index" > 
+          <div *ngIf="index == 0"  class="">
+            <img src="{{img}}" alt="{{produit.nom}}" class="w-full h-full object-center object-cover">
+          </div>
+          <div *ngIf="index > 0"  class="hidden lg:block">
+            <img src="{{img}}" alt="{{produit.nom}}" class="w-full h-full object-center object-cover">
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Product info -->
+      <div class="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
+        <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+          <h1 class="text-4xl font-extrabold tracking-wide text-grey">{{produit?.nom}}</h1>
+        </div>
+  
+        <!-- Prix et ajout panier -->
+        <div class="mt-4 lg:mt-0 lg:row-span-3">
+          <h2 class="sr-only">Information Produit</h2>
+          <p class="text-5xl font-thin text-grey">{{produit?.prix}} €</p>
+          <button type="submit" (click)="addToCart(produit)" class="mt-10 w-full !bg-blue rounded-md py-2 px-2 text-2xl font-light text-center text-white hover:!bg-light hover:text-grey" *ngIf="currentUser && !currentUser.roleLabel || currentUser.roleLabel === 'ROLE_CLIENT'">
+            <i class="fa-solid fa-cart-arrow-down text-3xl pr-4"></i>Ajouter au panier
+          </button>
+        </div>
+        <div class="py-10 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8 lg:pt-6 lg:pb-16">
+          <!-- Description and details -->
+          <div>
+            <h3 class="sr-only">Description</h3>
+            <div class="space-y-6">
+              <p class="text-base text-grey">
+                {{produit?.description}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

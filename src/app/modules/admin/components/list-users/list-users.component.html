@@ -1,0 +1,97 @@
+
+<div class="w-full h-full flex flex-col ">
+    <div class="flex w-1/2 font-light">
+        <form [formGroup]="byIdForm" (ngSubmit)="searchById()" class="flex w-full">
+            <div class="flex flex-col w-1/2">
+                <label class="leading-loose" for="form_search_id">Recherche par n° d'utilisateur</label>
+                <input id="form_search_id" formControlName="userbyid" class="rounded-md form-input px-4 py-2 text-xl"  step="any" type="number"/>
+            </div>
+            <div class="flex flex-col self-end ml-4 w-1/2 ">
+                <button class="w-full rounded-md text-xl font-light !bg-blue text-light py-2 px-6" type="submit">Rechercher</button>
+            </div>
+        </form>
+    </div>
+    <div class="flex w-1/2 mt-4 font-light">
+        <form [formGroup]="byNameForm" (ngSubmit)="searchByName()" class="flex w-full">
+            <div class="flex  flex-col w-1/2">
+                <label class="leading-loose" for="form_search_name">Recherche par nom d'utilisateur</label>
+                <input id="form_search_name"  formControlName="userbynom" class="rounded-md form-input px-4 py-2 text-xl"  step="any" type="text"/>
+            </div>
+            <div class="flex flex-col self-end ml-4 w-1/2 ">
+                <button class="w-full rounded-md text-xl font-light !bg-blue text-light py-2 px-6" type="submit">Rechercher</button>
+            </div>
+        </form>
+    </div>
+    <div class="flex w-1/2 mt-4 font-light">
+        <form [formGroup]="byMailForm" (ngSubmit)="searchByMail()" class="flex w-full">
+            <div class="flex flex-col w-1/2">
+                <label class="leading-loose" for="form_search_mail">Recherche par email</label>
+                <input id="form_search_mail" formControlName="userbymail" class="rounded-md form-input px-4 py-2 text-xl" step="any" type="text"/>
+            </div>
+            <div class="flex flex-col self-end ml-4 w-1/2 ">
+                <button class="w-full rounded-md text-xl font-light !bg-blue text-light py-2 px-6" type="submit">Rechercher</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="flex flex-col mt-8 w-full">
+        <h4 class="leading-loose font-normal border-b border-blue text-dark text-2xl">Liste utilisateurs</h4>
+        <ng-container *ngFor="let user of users" >    
+            <div class="w-full flex font-light text-dark leading-loose border-b border-blue" [ngClass]="{'opacity-50': user.disable}">
+                <div class="w-full flex self-center leading-loose pr-2">{{user.prenom}}</div>
+                <div class="w-full flex self-center leading-loose pr-2">{{user.nom}}</div>
+                <div class="w-full flex self-center leading-loose pr-2">{{user.dateNaissance | date:'dd/MM/yyyy' }}</div>
+                <div class="w-full flex self-center leading-loose pr-8">{{user.email}}</div>
+                <div class="flex pr-2">
+                    <a [routerLink]="['/admin/modifier', user.id]" class="bouton font-light  my-1">Modifier</a>
+                </div>
+                <div class=" flex pr-2">
+                    <button class="bouton font-light my-1" [ngClass]="{'line-through': user.disable}" type="button" (click)="disable(user)" [disabled]="user.disable">
+                        Desactiver
+                    </button>
+                </div>
+                <div class=" flex self-right">
+                    <button class="bouton font-light my-1" type="button" (click)="contact(user)">Contacter</button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<waoo-modal id="modal-contactclient">
+    <h2 *ngIf="usrContact" class="font-bold">Message pour {{usrContact.email}}</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSendMessage()">
+        <label>
+            Sujet :
+            <input type="text" formControlName="sujet" required class="w-full" />
+        </label>
+        <label>
+            Message :
+            <textarea formControlName="message" required class="w-full h-28"></textarea>
+        </label>
+        <button class="bouton w-full" type="submit" [disabled]="!contactForm.valid">Envoyer le message</button>
+    </form>
+    <div class="text-right">
+      <button type="button" (click)="closeModal('modal-contactclient')"
+        class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        Annuler
+      </button>
+    </div>
+</waoo-modal>
+<waoo-modal id="modal-adminloading">
+    <div class="flex justify-center items-center">
+        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</waoo-modal>
+<waoo-modal id="modal-contactclientok">
+    <div class="text-justify" *ngIf="usrContact">
+        Le message a été envoyé à {{usrContact.email}} !
+    </div>
+    <div class="text-right">
+      <button type="button" (click)="closeModal('modal-contactclientok')"
+        class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        Fermer
+      </button>
+    </div>
+</waoo-modal>

@@ -1,0 +1,27 @@
+<h2 class="text-3xl font-bold align-text-bottom">Résultat de votre recherche</h2>
+<div class="tri-produits">
+    <form [formGroup]="triForm">
+        <label for="select_type_tri" class="mr-5">Trier par</label>
+        <select id="select_type_tri" (change)="changeTri()" formControlName="tri">
+            <option value="croissant" selected>Prix croissant</option>
+            <option value="decroissant">Prix décroissant</option>
+        </select>
+    </form>
+</div>
+<section>
+    <div class="filtre-produits">
+        <h3>Prix</h3>
+        <form [formGroup]="prixForm" (submit)="submitPrix()">
+            <label for="filtre_prix_min">Min</label>
+            <input type="number" id="filtre_prix_min" formControlName="min" />
+            <label for="filtre_prix_max">Max</label>
+            <input type="number" id="filtre_prix_max" formControlName="max" />
+            <span class="info" *ngIf="filtreErreur">Un des champs doit être renseigné</span>
+            <button type="submit" [disabled]="!prixForm.valid">Filtrer</button>
+            <button type="button" (click)="annulePrix()" *ngIf="filtreActif">Annuler</button>
+        </form>
+    </div>
+    <div class="liste-produits">
+        <app-article *ngFor="let produit of produits" [produit]="produit"></app-article>
+    </div>
+</section>

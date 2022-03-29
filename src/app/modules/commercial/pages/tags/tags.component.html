@@ -1,0 +1,7 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <label for="form_addtag_label">Ajouter un tag</label><br />
+    <input type="text" formControlName="label" class="rounded-md form-input px-4 py-2 text-md mr-1" id="form_addtag_label" required />
+    <button [disabled]="!addForm.valid" type="submit" class="rounded-md text-2xl bg-blue text-light font-normal py-1 px-2">Ajouter</button>
+</form>
+<h2>Liste des tags</h2>
+<app-tagedit *ngFor="let tag of tags" [tag]="tag" (needReload)="reload()"></app-tagedit>

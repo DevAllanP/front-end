@@ -1,0 +1,95 @@
+<!-- component -->
+<section class="h-screen w-screen bg-light flex flex-col-reverse  sm:flex-row min-h-0 min-w-0 overflow-hidden">
+    <aside class="sm:h-full sm:w-48  h-12 w-4/6 bg-blue">
+      <ul class="text-center flex flex-row sm:flex-col w-full">
+  
+        <li class="text-light sm:border-b border-gray-900 py-12 flex-1 sm:w-full">
+          <a href="compte/commandes" class="">Mes commandes</a>
+        </li>
+  
+  
+        <li class="text-light sm:border-b border-gray-900 py-12 flex-1 sm:w-full">
+          <a href="compte/coordonner" class="">Mes coordonnées</a>
+        </li>
+        <li class="text-light sm:border-b border-gray-900 py-12 flex-1 sm:w-full">
+          <a href="compte/changermdp" class="">Changer son mots de passe </a>
+        </li>
+        <li class="text-light sm:border-b border-gray-900 py-12 flex-1 sm:w-full">
+          <a href="compte/suppression" class="">Supprimer mon compte</a>
+        </li>
+      </ul>
+  
+  
+    </aside>
+
+<!--
+  This example requires Tailwind CSS v2.0+ 
+  
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+
+
+
+<main class="h-full flex-1 flex justify-center min-h-0 min-w-0 overflow-auto ">
+    <div class="items-center">
+
+    
+    <div class="bg-white p-8 rounded-md w-full ">
+            <div class="">
+                <div>
+                <div class="col-span-1">
+                  <div class="px-4 sm:px-0">
+                    <h3 class=" leading-6 text-gray-900 text-center capitalize text-2xl font-roboto font-bold">Changer son mots de passe </h3>
+          
+                  </div>
+                </div>
+            <div class="shadow-md rounded-md">
+              <div class="grid grid-cols-3 gap-6 ">
+                <div class="mt-5  col-span-2">
+                  <form action="#" method="POST">
+                    <div class=" rounded-md">
+                      <div class="px-4 py-5 bg-white sm:p-6">
+                        <div class="grid grid-cols-6 gap-6">
+                          <div class="col-span-6 sm:col-span-4">
+                            <label for="first-name" class="block text-sm font-medium text-gray-700 required">Ancien mots de passe :*</label>
+                            <input type="password" name="mdp" id="Amdp"  class="mt-2 border-2  block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+                          </div>
+            
+                          <div class="col-span-6 sm:col-span-4">
+                            <label for="last-name" class="block text-sm font-medium text-gray-700">Nouveau mots de passe :*</label>
+                            <input type="password" name="mdp" id="newmdp"  class="mt-1 border-2 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md required">
+                          </div>
+            
+
+            
+
+                        </div>
+                      </div>
+                      <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 hover:bg-dark hover:text-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sauvegarder</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    
+
+  </main>
+  </section>
+  

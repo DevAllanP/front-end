@@ -1,0 +1,10 @@
+.tri {
+    text-align: right;
+    margin-top: 1rem;
+}
+.tri label {
+    margin-right: 1rem;
+}
+.recherche button {
+    margin-left: 1rem;
+}

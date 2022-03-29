@@ -1,0 +1,13 @@
+a.active {
+    color:#e6e6e6;
+    font-size:18px;
+    font-weight:500;
+}
+
+
+a {
+    color:#333333;
+    font-size:16px;
+    line-height:44px;
+    font-weight:300;
+}

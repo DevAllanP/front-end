@@ -1,0 +1,15 @@
+<div class="h-full flex" style="min-height:calc(100vh - 268px)">
+    <aside class="flex items-center min-h-max pt-8 pb-8 w-1/4">
+        <ul class="list-unstyled font-roboto bg-grey flex flex-col w-full h-full m-8 p-6">
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="commandes">Commandes & Retours</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="produit/ajout">Ajout de produit</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="produit/liste">Liste des produits</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="tags">Tags</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="typesproduit">Types de produit</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="frais">Types de frais</a></li>
+        </ul>
+    </aside>
+    <section class="pt-8 pb-14 px-10 w-3/4">
+        <router-outlet></router-outlet>
+    </section>
+</div>

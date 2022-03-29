@@ -1,0 +1,6 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <input formControlName="label" type="text" value="{{tp.label}}" required class="rounded-md form-input px-4 py-2 text-md mr-1" />
+    <button type="submit" [disabled]="!editForm.valid" class="rounded-md text-2xl bg-blue text-light font-normal py-1 px-2 mr-1">Renommer</button>
+    <button type="button" (click)="delete()" class="rounded-md text-2xl bg-blue text-light font-normal py-1 px-2 mr-2">Supprimer</button>
+    <span class="text-grey">Nombre de produits : {{tp.nombreProduits}}</span>
+</form>

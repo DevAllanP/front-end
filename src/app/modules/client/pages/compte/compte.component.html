@@ -1,0 +1,16 @@
+
+  
+  <div class="h-full flex" style="min-height:calc(100vh - 268px)">
+    <aside class="flex items-center min-h-max pt-8 pb-8 w-1/4">
+        <ul class="list-unstyled font-roboto bg-grey flex flex-col w-full h-full m-8 p-6">
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="commandes">Mes commandes</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="coordonner" [routerLinkActiveOptions]={exact:true}>Mes coordonnées</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="changermdp">Changer son mots de passe</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="suppression" [routerLinkActiveOptions]={exact:true}>Supprimer mon compte</a></li>
+           
+        </ul>
+    </aside>
+    <section class="pt-8 pb-14 px-10 w-3/4">
+        <router-outlet></router-outlet>
+    </section>
+</div>

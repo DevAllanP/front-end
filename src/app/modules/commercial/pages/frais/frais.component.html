@@ -1,0 +1,9 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <label for="form_addfrais_label">Ajouter un type de frais</label><br />
+    <input type="text" formControlName="label" class="rounded-md form-input px-4 py-2 text-md mr-1" id="form_addfrais_label" required />
+    <label for="form_addfrais_montant">Montant :</label>
+    <input type="number" step="any" formControlName="montant" class="rounded-md form-input px-4 py-2 text-md mr-1" id="form_addfrais_montant" required />
+    <button [disabled]="!addForm.valid" type="submit" class="rounded-md text-2xl bg-blue text-light font-normal py-1 px-2">Ajouter</button>
+</form>
+<h2>Liste des types de frais</h2>
+<app-fraisedit *ngFor="let f of frais" [frais]="f"></app-fraisedit>

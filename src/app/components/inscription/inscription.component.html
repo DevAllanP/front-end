@@ -1,0 +1,69 @@
+<div class="bg-grey w-96 p-4 md:py-5 md:pr-4 md:pl-8">
+    <p class="text-light text-5xl font-thin">S’inscrire</p>
+    <form [formGroup]="signinForm" (ngSubmit)="signin()" class="space-y-5 mt-12">
+        <div class="flex">
+            <input type="text" id="form_signin_nom" formControlName="nom" class="w-full h-12 bg-light rounded-md px-3 mr-2"
+                placeholder="Nom" required />
+            <input type="text" id="form_signin_prenom" formControlName="prenom"
+                class="w-full h-12 bg-light rounded-md px-3" placeholder="Prénom" required />
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('nom')?.valid">
+            Le nom est requis.
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('prenom')?.valid">
+            Le prénom est requis.
+        </div>
+        <div>
+            <label class="flex items-center">
+                <span class="pr-2 text-light">Date de naissance</span>
+                <input type="date" id="form_signin_date" formControlName="ddn"
+                    class="flex-1 h-12 bg-light rounded-md px-3" placeholder="Date de naissance" required />
+            </label>
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('ddn')?.valid">
+            La date de naissance est erronée.
+        </div>
+        <div>
+            <input type="email" id="form_signin_email" formControlName="email"
+                class="w-full h-12 bg-light rounded-md px-3" placeholder="E-mail" required />
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('email')?.valid">
+            L'e-mail est requis.
+        </div>
+        <div>
+            <input formControlName="password1" type="password" id="password1"
+                class="w-full bg-light rounded-md px-3 h-12" placeholder="Mot de passe" required />
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('password1')?.valid">
+            Le mot de passe est requis.
+        </div>
+        <div>
+            <input formControlName="password2" type="password" id="password2"
+                class="w-full bg-light rounded-md px-3 h-12" placeholder="Confirmation du mot de passe" required />
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('password2')?.valid">
+            La confirmation du mot de passe est requise.
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!confirmation">
+            La confirmation ne correspond pas au mot de passe saisi.
+        </div>
+        <div class="pl-4">
+            <label class="block text-light">
+                <input class="mr-1 leading-tight bg-light border-none" id="checkbox" type="checkbox" value="oui" required formControlName="terms" />
+                <span class="text-sm">
+                    J'accepte les conditons d'utilisation.
+                </span>
+            </label>
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="!signinForm.get('terms')?.valid">
+            L'acceptation des conditions d'utilisation est requise.
+        </div>
+        <div class="text-red-700 mt-0 erreur hidden" *ngIf="erreurGlobale">
+            {{erreurGlobale}}
+        </div>
+        <div class="pt-6 pb-3">
+            <button type="submit"
+                class="text-center block w-full hover:!bg-light hover:text-blue rounded-full text-light !bg-blue py-2 font-light text-2xl">S'inscrire</button>
+        </div>
+    </form>
+</div>

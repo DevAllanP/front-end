@@ -1,0 +1,5 @@
+<form [formGroup]="rechercheForm" (ngSubmit)="onSubmit()" class="w-full cursor-pointer border border-white text-sm rounded-full flex bg-light justify center">
+    <input type="text" formControlName="recherche" placeholder="Rechercher un produit.."
+        class="flex-grow px-4 h-10 rounded-l-full rounded-r-full text-sm focus:outline-none border-none font-roboto ">
+    <button type="submit" class="fas fa-search m-3 mr-5 text-lg text-dark w-4 h-4" [disabled]="!rechercheForm.valid">&nbsp;</button>
+</form>

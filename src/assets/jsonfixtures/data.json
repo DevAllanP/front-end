@@ -1,0 +1,58 @@
+{ "data": 
+  {
+    "slides": [
+        "https://media.ldlc.com/encart/p/16745_b.jpg",
+        "https://media.ldlc.com/encart/p/16805_b.jpg",
+        "https://media.ldlc.com/encart/p/16828_b.jpg",
+        "https://media.ldlc.com/encart/p/16851_b.jpg", 
+        "https://media.ldlc.com/encart/p/16815_b.jpg"
+    ],   
+      
+    "newProduit": {
+        "idProduit":21,
+        "disable": false,
+        "nom":"Apple MacBook Pro M1 13.3\" Silver 16GB/512GB (MYDC2FN/A-16GB)",
+        "description": "La puce M1 confère au MacBook Pro une vitesse et une puissance vertigineuses. Son processeur central huit cœurs s’acquitte facilement des flux de production complexes et des charges de travail les plus lourdes en affichant des performances de traitement jusqu’à 2,8 fois plus rapides que celles de la génération précédente2. Le tout, avec une efficacité énergétique stupéfiante.",
+        "prix":2400
+    },
+    "popProduits":[
+      { 
+        "idProduit":22,
+        "disable": false,
+        "nom":"ASUS ROG STRIX GeForce RTX 3070 Ti O8G GAMING",
+        "description": "Le PC Gamer MSI MEG Aegis Ti5 est novateur sur bien des aspects. En plus d'un design audacieux, il bénéficie d'une molette Gaming innovante en façade, d'une technologie audio basée sur l'IA, d'un système de refroidissement performant. Bien entendu, il dispose également de composants ultra-performants triés sur le volet pour offrir de hautes performances de jeu. Le MSI MEG Aegis Ti5 11TD-085EU offre des performances de folie et un fonctionnement ultra-rapide notamment grâce à son processeur Intel Core i7-11700K, ses 64 Go de mémoire DDR4, sa carte graphique NVIDIA GeForce RTX 3070 et ses 2 SSD de 1 To au format M.2 PCIe.",
+        "prix":1199.95
+      },
+      { 
+        "idProduit":21,
+        "disable": false,
+        "nom":"Apple MacBook Pro M1 13.3\" Silver 16GB/512GB (MYDC2FN/A-16GB)",
+        "description": "La puce M1 confère au MacBook Pro une vitesse et une puissance vertigineuses. Son processeur central huit cœurs s’acquitte facilement des flux de production complexes et des charges de travail les plus lourdes en affichant des performances de traitement jusqu’à 2,8 fois plus rapides que celles de la génération précédente2. Le tout, avec une efficacité énergétique stupéfiante.",
+        "prix":2400
+      }
+    ],
+    "consulProduits": [
+      {
+          "id":23,
+          "img":"https://media.ldlc.com/r374/ld/products/00/05/84/19/LD0005841930_1.jpg", 
+          "nomProduit":"ASUS ROG STRIX GeForce RTX 3070 Ti O8G GAMING", 
+          "refProduit":"(XXXXXXXX)",
+          "prix":"1 199€95"
+        },
+        { 
+          "id":21,
+          "img":"https://media.ldlc.com/r1600/ld/products/00/05/82/02/LD0005820208_1.jpg", 
+          "nomProduit":"Apple MacBook Pro M1 13.3\" Silver 16GB/512GB",
+          "refProduit":"(MYDC2FN/A-16GB)", 
+          "prix":"2400€"
+        },
+        {   
+          "id":22,
+          "img":"https://media.ldlc.com/r374/ld/products/00/05/75/98/LD0005759875_1_0005766992_0005888107_0005910004.jpg", 
+          "nomProduit":"MSI MEG Aegis Ti5 11TD-085EU", 
+          "refProduit":"(XXXXXXXX)",
+          "prix":"3 599€95"
+        }
+      ]
+  }
+}

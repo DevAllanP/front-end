@@ -1,0 +1,38 @@
+<div class="bg-blue  mx-auto flex content-center h-full">
+  <span class="bg-blue shadow-lg text-4xl max-w-lg mx-auto ">Chat app</span>
+</div>
+<main class="bg-gray-200 flex content-center justify-center h-full items-center">
+
+  <div class="bg-white shadow-lg max-w-lg">
+    <!-- <img class="w-full h-40 object-cover" src="../assets/images/chat-bg.png" alt=""> -->
+    <div class="p-4">
+      <div class="text-2xl text-gray-800 mb-2">
+        <ul>
+          <li *ngFor="let chatMessage of webSocketService.chatMessages">
+            <strong class="text-teal-900/75">{{chatMessage.user}}: </strong>
+            <span class="text-lime-900/100">{{chatMessage.message}}</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="mb-4">
+        <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm">
+
+          <label for="user" class="block text-gray-600">Nom d'utilisateur </label>
+          <input type="text" class="border border-gray-300 shadow-inner py-2 px-3" name="user" id="input-user" ngModel>
+
+          <label for="message" class="block text-gray-600">Message </label>
+          <input type="text" class="border border-gray-300 shadow-inner" name="message" id="input-message" ngModel>
+
+          <div class="p-10 w-2">
+            <button type="submit" class="block text-gray-600 shadow-inner">Send</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</main>

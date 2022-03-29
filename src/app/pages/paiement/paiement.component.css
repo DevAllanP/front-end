@@ -1,0 +1,53 @@
+.paiement {
+    width: 100%;
+}
+
+.tabs {
+    display: flex;
+    font-weight: bold;
+    @apply text-dark;
+}
+
+.tabs div {
+    padding: 1rem 2rem;
+    border-width: 1px;
+    border-style: solid;
+    border-bottom: 0;
+    border-radius: 1rem 0 0 0;
+    @apply border-grey bg-light text-grey;
+}
+
+.tabs div+div {
+    border-radius: 0 1rem 0 0;
+    border-left: 0;
+}
+
+.tabs div.active {
+    @apply bg-white text-dark;
+}
+
+.tabs+div {
+    border-width: 1px;
+    border-style: solid;
+    padding: 1rem;
+    border-radius: 0 1rem 1rem 1rem;
+    min-height: 20rem;
+    width: 100%;
+    @apply border-grey text-dark;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+button {
+    margin-top: 1rem;
+    font-size: 2rem;
+    width: 100%;
+}
+
+button.cancel {
+    font-size: 1.5rem;
+    @apply bg-grey;
+}

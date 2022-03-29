@@ -1,0 +1,37 @@
+<div class="flex w-full flex-col md:flex-row">
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" *ngIf="produit" class="w-full xl:w-1/2 pr-8">
+    <label for="form_editproduit_nom">Nom du produit</label><br />
+    <input id="form_editproduit_nom" formControlName="nom" type="text" required class="2xl:w-1/2 w-full !mb-8" /><br />
+    <label for="form_editproduit_type">Type</label><br />
+    <select id="form_editproduit_type" formControlName="type" class="2xl:w-1/3 w-1/2 !rounded-md text-md !pl-4 !py-2 !mb-8" required>
+        <option selected></option>
+        <option value="{{tp.id}}" *ngFor="let tp of types"><span class="ml-8">{{tp.label}}</span></option>
+    </select><br />
+    <label for="form_editproduit_description">Description</label><br />
+    <textarea id="form_editproduit_description" formControlName="description" class="2xl:w-1/2 w-full min-h-[8rem] mb-4" required></textarea><br />
+    <label for="form_editproduit_prix">Prix</label><br />
+    <input id="form_editproduit_prix" formControlName="prix" type="number" step="any" required class="2xl:w-1/3 w-1/2 !mb-8"/><br />
+    <label for="form_editproduit_tags">Tags séparés par un espace</label><br />
+    <input id="form_editproduit_tags" formControlName="tags" type="text" class="2xl:w-1/2 w-full" required /><br />
+    <button [disabled]="!editForm.valid" type="submit" class="mt-8 !px-4 !py-2">Sauvegarder</button>
+</form>
+<div class="w-full lg:w-1/2">
+    <h2> Photos du produit</h2>
+    <div class="grid lg:grid-cols-2 grid-cols-1" *ngIf="produit">
+        <ng-container *ngFor="let img of produit.url_images; let index=index;">
+            <img src="{{img}}" alt="{{produit.nom}}" class="w-full h-full object-center object-cover">
+
+        </ng-container>
+    </div>
+    <div *ngIf="produit && produit.url_images.length < 3" class="">
+        Charger des images
+    <div class="form-group">
+        <div class="content">
+            <input (change)="onChangeFile($event)" type="file">
+            <br>
+            <br>
+            <button (click)="handleSendFile()" >Enregistrer l'image</button>
+          </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,7 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <label for="form_addtypeproduit_label">Ajouter un type de produit</label><br />
+    <input type="text" formControlName="label" class="rounded-md form-input px-4 py-2 text-md mr-1" id="form_addtypeproduit_label" required />
+    <button [disabled]="!addForm.valid" type="submit" class="rounded-md text-2xl bg-blue text-light font-normal py-1 px-2">Ajouter</button>
+</form>
+<h2>Liste des types de produit</h2>
+<app-typeproduitedit *ngFor="let t of tp" [tp]="t" (needReload)="reload()"></app-typeproduitedit>

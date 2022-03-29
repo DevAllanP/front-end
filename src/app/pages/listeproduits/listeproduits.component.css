@@ -1,0 +1,64 @@
+:host {
+    display: block;
+    padding: 20px;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+.tri-produits {
+    text-align: right;
+    
+}
+
+section {
+    display: flex;
+    margin-top: 4px;
+}
+
+.filtre-produits {
+    padding: 18px;
+    border-width: 1px;
+    border-style: solid;
+    width: 362px;
+    box-sizing: border-box;
+    margin-right: 20px;
+    @apply border-grey;
+}
+
+.filtre-produits input {
+    width: 100px;
+    margin: 0 8px;
+}
+
+.filtre-produits button {
+    margin-top: 4px;
+    margin-left: 4px;
+    @apply px-3 rounded-md py-2 font-roboto relative text-white font-thin bg-blue;
+}
+
+.filtre-produits li {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.filtre-produits li:hover, .filtre-produits li.active {
+    text-decoration: underline;
+}
+
+.liste-produits {
+    /* flex: 1; */
+}
+
+.info {
+    display: inline-block;
+    width: 100%;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,32 @@
+<div class="flex flex-col mt-8 w-full">
+    <h4 class="leading-loose font-normal border-b border-blue text-dark text-2xl">Listes des produits</h4>
+    <ng-container *ngFor="let produit of produits" >    
+        <div class="w-full flex font-light text-dark leading-loose border-b border-blue" >
+            <div class="w-full flex self-center leading-tight p-2">{{produit.nom}}</div>
+            <div class="w-full flex self-center text-xs p-2">{{produit.description}}</div>
+            <div class="w-full flex self-center justify-center leading-loose pr-2">{{produit.prix}} €</div>
+            <div class="w-full flex self-center leading-loose pr-8">{{produit.typeProduitDto.label}}</div>
+            <ng-container [ngSwitch]="produit.disable">
+                <div *ngSwitchCase="true" class="w-full flex self-center leading-loose pr-8">Désactivé</div>
+                <div *ngSwitchDefault class="w-full flex self-center leading-loose pr-8">En vente</div>
+            </ng-container>
+            <div class="w-full flex pr-2" *ngIf="!produit.disable">
+                <button class="w-full rounded-md text-medium font-light !bg-blue text-light px-2 py-1 my-1 self-center max-h-[3rem]" type="button" (click)="modifie(produit)">Modifier</button>
+            </div>
+            <div class=" w-full flex pr-2" *ngIf="!produit.disable">
+                <button class="w-full rounded-md text-md font-light self-center !bg-blue text-light max-h-[3rem] px-2 py-1 my-1" type="button" (click)="desactive(produit)">Desactiver</button>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<waoo-modal id="modal-produitliste">
+  <div class="text-justify">
+    {{alert}}
+  </div>
+  <div class="text-right">
+    <button type="button" (click)="closeModal()"
+      class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+      Fermer
+    </button>
+  </div>
+</waoo-modal>

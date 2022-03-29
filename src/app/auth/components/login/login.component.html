@@ -1,0 +1,38 @@
+<div class=" bg-white flex flex-col items-center  py-10" style="min-height:calc(100vh - 344px)">
+    <!-- linkedin logo -->
+    <div class=" flex w-96">
+        <img src="https://zupimages.net/up/22/09/nq1o.png" alt="" />
+    </div>
+    <!-- Layout  -->
+    <div class="flex shadow-xl flex-col md:flex-row rounded">
+        <app-inscription></app-inscription>
+        <div class="bg-grey w-96  p-4 md:py-5 md:pl-4 md:pr-8">
+            <h1 class="text-5xl text-light font-thin">S’identifier</h1>
+
+            <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-5 mt-12">
+                <div>
+                    <input type="email" id="form_login_email" formControlName="email" class="w-full h-12 bg-light rounded-md px-3" placeholder="E-mail "/>
+                </div>
+                <div *ngIf="isControlInvalid('email')" class="text-red-500 top-10">L'e-mail est requis.</div>
+                <div>
+                    <input formControlName="password" type="password" class="w-full bg-light rounded-md px-3 h-12" placeholder="Mot de passe"/>
+                </div>
+                <div *ngIf="isControlInvalid('password')" class="text-red-500 pb-15">Le mot de passe est requis.</div>
+                <div class="pl-4">
+                    <label class="block text-light">
+                        <input class="mr-1 leading-tight bg-light border-none" type="checkbox">
+                        <span class="text-sm">
+                          Memoriser
+                        </span>
+                    </label>
+                </div>
+                <div class="pb-6 pl-3">
+                    <a href="#!" class="font-medium text-blue hover:bg-blue hover:text-light rounded-full p-2">Mot de passe oublié ?</a>
+                </div>
+                <div class="pt-6 pb-">
+                    <button type="submit" class="text-center block w-full hover:!bg-light hover:text-blue rounded-full text-light !bg-blue py-2 font-light text-2xl" >S'identifier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="h-full flex" style="min-height:calc( 100vh - 344px)">
+    <aside class="flex items-center min-h-max pt-8 pb-8 w-1/4">
+        <ul class="list-unstyled font-roboto bg-grey flex flex-col w-full h-full m-8 p-6">
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="creer">Ajout d'utilisateur</a></li>
+            <li class="leading-loose"><a routerLinkActive="active" routerLink="list" [routerLinkActiveOptions]={exact:true}>Gestion des utilisateurs</a></li>
+           
+        </ul>
+    </aside>
+    <section class="pt-8 pb-14 px-10 w-3/4">
+        <router-outlet></router-outlet>
+    </section>
+</div>
+
+
+
+

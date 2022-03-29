@@ -1,0 +1,64 @@
+<div class="entete">
+    <div class="date" *ngIf="commande.dateCommande">
+        Commande effectuée le<br />
+        {{commande.dateCommande | date:'yyyy-MM-dd HH:mm:ss'}}
+    </div>
+    <div class="total">
+        Total<br />
+        {{total}} €
+    </div>
+    <div class="adresse">
+        Statut de la commande<br />
+        {{commande.statusDeCommande.label}}
+    </div>
+    <div class="num">
+        N° de commande<br />
+        {{commande.id}}
+    </div>
+</div>
+<ng-container *ngFor="let l of lignes">
+    <app-article [produit]="l.produitDto" [quantite]="l.quantite"></app-article>
+</ng-container>
+<div class="suivi" *ngIf="showSuivi">
+    <div class="paiement-ok" [ngClass]="{'actif': commande.dateCommande}">
+        Commande effectuée
+        <span *ngIf="commande.dateCommande">le {{commande.dateCommande | date:'short'}}</span>
+    </div>
+    <div class="en-livraison" [ngClass]="{'actif': commande.dateEnvoie}">
+        Colis envoyé
+        <span *ngIf="commande.dateEnvoie">le {{commande.dateEnvoie | date:'short'}}</span>
+    </div>
+    <div class="livraison-ok" [ngClass]="{'actif': commande.dateLivraison}">
+        Livraison effectuée
+        <span *ngIf="commande.dateLivraison">le {{commande.dateLivraison | date:'short'}}</span>
+    </div>
+</div>
+<div class="contact" *ngIf="showContact">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmitContact()">
+        <label for="form_contactclient_justification_{{commande.id}}">Justification de la demande de retour</label><br />
+        <textarea formControlName="justification" id="form_contactclient_justification_{{commande.id}}"></textarea>
+        <button type="submit" [disabled]="!contactForm.valid" class="bouton">Envoyer</button>
+    </form>
+</div>
+<div class="pied">
+    <button class="bouton" type="button" (click)="suit()" [ngClass]="{'actif': showSuivi}">Suivre le colis</button>
+    <button class="bouton" type="button" (click)="contacte()" [ngClass]="{'actif': showContact}" *ngIf="commande.statusDeCommande.label !== 'demande de retour'">Demander un retour</button>
+</div>
+<waoo-modal id="modal-commande-{{commande.id}}-loading">
+    <div class="flex justify-center items-center">
+        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</waoo-modal>
+<waoo-modal id="modal-commande-{{commande.id}}-contact">
+    <div class="text-justify">
+      Votre demande de retour a été envoyée.
+    </div>
+    <div class="text-right">
+      <button type="button" (click)="closeContactModal()"
+        class="mt-2 font-semibold font-roboto leading-none py-4 px-10 rounded focus:ring-2 border-2 hover:bg-dark hover:text-light focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        Fermer
+      </button>
+    </div>
+</waoo-modal>

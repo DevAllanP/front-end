@@ -1,0 +1,68 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+<!-- Logo -->
+<div class="w-screen flex flex-row items-center p-1 justify-center bg-blue ">
+  <a href="/" style="width: 100px"><img src="https://zupimages.net/up/22/09/nq1o.png" alt="WaooCorp" height="100px"
+      width="100px" /></a>
+  <!-- Recherche -->
+  <app-searchbar class="w-screen md:w-1/3"></app-searchbar>
+  <!-- menu mobile -->
+  <div class="flex flex-row-reverse mr-4 ml-4 md:hidden">
+    <i class="fas fa-bars text-3xl"></i>
+  </div>
+  <!-- Panier et connexion -->
+  <div class="panier-conexion--container flex flex-row-reverse mr-8">
+    <ng-container [ngSwitch]="currentUser.roleLabel">
+      <span *ngSwitchCase="'ROLE_CLIENT'" class="text-center pt-2">
+        <a routerLink="client" class="text-gold hover:text-dark ml-4">
+          <i class="fa-solid fa-user-check pr-2"></i><span class="capitalize">{{currentUser.prenom}}</span>
+        </a>
+        <br />
+        <button type="button" (click)="logout()" class="leading-none pb-2 rounded text-gold hover:text-dark ml-4">
+          Se déconnecter
+        </button>
+      </span>
+      <span *ngSwitchCase="'ROLE_COMMERCIAL'" class="text-center pt-2">
+        <a routerLink="commercial" class="text-gold hover:text-dark ml-4">
+          <i class="fa-solid fa-user-check pr-2"></i><span
+            class="capitalize">{{currentUser.prenom}}</span><span>(commercial)</span>
+        </a>
+        <br />
+        <button type="button" (click)="logout()" class="leading-none pb-2 rounded text-gold hover:text-dark ml-4">
+          Se déconnecter
+        </button>
+      </span>
+      <span *ngSwitchCase="'ROLE_ADMIN'" class="text-center  pt-2">
+        <a routerLink="admin" class="text-gold hover:text-dark  ml-4">
+          <i class="fa-solid fa-user-check pr-2"></i><span
+            class="capitalize">{{currentUser.prenom}}</span><span>(admin)</span>
+        </a>
+        <br />
+        <button type="button" (click)="logout()" class="leading-none pb-2 rounded text-gold hover:text-dark ml-4">
+          Se déconnecter
+        </button>
+      </span>
+      <a *ngSwitchDefault routerLink="login"
+        class="text-dark hover:text-gold hover:font-bold text-center py-2 m-2 font-roboto font-bold">
+        <i class="fa-solid fa-user text-3xl"></i>
+        <!-- Se connecter -->
+      </a>
+    </ng-container>
+    <a routerLink="/panier" routerLinkActive="active" class="text-dark hover:text-gold font-lg text-center px-6 py-2 m-2 ml-4" *ngIf="currentUser && !currentUser.roleLabel || currentUser.roleLabel === 'ROLE_CLIENT'">
+      <i class="fa-solid fa-cart-shopping text-3xl"></i><span *ngIf="qteTotal > 0" class="text-sm" >({{qteTotal}})</span>
+    </a>
+  </div>
+</div>
+<nav class="bg-dark flex items-center justify-center capitalize types">
+  <a href="/" [class.active]="isHomeRoute()" class="border-l border-grey2 flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30.503" height="21.496" viewBox="0 0 40.503 31.496" class="mr-2">
+      <path id="Icon_awesome-home" data-name="Icon awesome-home"
+        d="M19.714,10.425,6.75,21.1V32.625A1.125,1.125,0,0,0,7.875,33.75l7.879-.02A1.125,1.125,0,0,0,16.874,32.6v-6.73A1.125,1.125,0,0,1,18,24.75h4.5a1.125,1.125,0,0,1,1.125,1.125V32.6a1.125,1.125,0,0,0,1.125,1.129l7.876.022a1.125,1.125,0,0,0,1.125-1.125V21.094L20.789,10.425A.857.857,0,0,0,19.714,10.425Zm20.477,7.257-5.878-4.845V3.1a.844.844,0,0,0-.844-.844H29.531a.844.844,0,0,0-.844.844V8.2l-6.3-5.179a3.375,3.375,0,0,0-4.289,0L.305,17.681A.844.844,0,0,0,.193,18.87l1.793,2.18a.844.844,0,0,0,1.189.115L19.714,7.542a.857.857,0,0,1,1.076,0l16.54,13.622a.844.844,0,0,0,1.188-.112l1.793-2.18a.844.844,0,0,0-.12-1.19Z"
+        transform="translate(0.001 -2.254)" />
+    </svg>
+    Accueil
+  </a>
+  <a [routerLink]="['/produits', t.label]" routerLinkActive="active" *ngFor="let t of tp">{{t.label}}</a>
+</nav>
+
+
